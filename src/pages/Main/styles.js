@@ -18,6 +18,10 @@ export const Card = styled.View`
     background-color: #fff;
     border-radius:4px;
     margin: 0 20px;
+    position: absolute;
+    top: 350px;
+    left: 0;
+    right: 0;
 `
 
 export const CardHeader = styled.View`
