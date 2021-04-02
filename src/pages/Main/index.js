@@ -28,12 +28,27 @@ export default function Main() {
   function onHandlerStateChanged(event){
     //QUANDO O USUÁRIO FINALIZOU A ANIMAÇÃO
     if (event.nativeEvent.oldState === State.ACTIVE){
+      let opened = false
       const {translationY} = event.nativeEvent
-
       offset += translationY
 
-      translateY.setOffset(offset)
-      translateY.setValue(0)
+      if (translationY >= 100){
+        opened = true        
+      } else {
+        translateY.setOffset(0)
+        translateY.setValue(offset)
+        offset = 0
+      }
+
+      Animated.timing(translateY, {
+        toValue: opened ? 350 : 0,
+        duration: 400,
+        useNativeDriver: true,
+      }).start(() => {
+        offset = opened ? 350 : 0
+        translateY.setOffset(offset)
+        translateY.setValue(0)
+      })
     }
   }
 
@@ -41,7 +56,7 @@ export default function Main() {
     <Container>
       <Header />
       <Content>
-        <Menu translateY= {translateY}/>
+        <Menu translateY={translateY}/>
 
         <PanGestureHandler
           onGestureEvent={animatedEvent}

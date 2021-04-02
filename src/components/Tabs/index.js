@@ -15,11 +15,11 @@ export default function Tabs({ translateY }){
                 })
             }],
             opacity: translateY.interpolate({
-              inputRange: [0,300],
-              outputRange: [1,0.4],
-              extrapolate: 'clamp',
-            })
-          }}>
+                    inputRange: [0,300],
+                    outputRange: [1,0.4],
+                    extrapolate: 'clamp',
+                })
+        }}>
             <TabsContainer>
                 <TabsItem>
                     <Icon name="person-add" size={24} color="#fff"/>
